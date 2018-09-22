@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
+import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import LoginForm from './components/LoginForm';
 
-//important use firebase 5.0.2
+//important use firebase 5.0.3
+// reduxThunk is middleware so we need applyMiddleware
 class App extends Component {
   componentWillMount() {
     const config = {
-      apiKey: 'ddAIzaSyCo3PsyHVxoj12cWyncNn0FRS80tocnaIc',
+      apiKey: 'AIzaSyCo3PsyHVxoj12cWyncNn0FRS80tocnaIc',
       authDomain: 'employeesmanager-338ed.firebaseapp.com',
       databaseURL: 'https://employeesmanager-338ed.firebaseio.com',
       projectId: 'employeesmanager-338ed',
@@ -19,8 +21,9 @@ class App extends Component {
     firebase.initializeApp(config);
   }
   render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
-      <Provider store={createStore(reducers)}>
+      <Provider store={store}>
         <LoginForm />
       </Provider>
     );
