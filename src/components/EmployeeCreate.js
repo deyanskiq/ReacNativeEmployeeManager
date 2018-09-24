@@ -26,7 +26,7 @@ class EmployeeCreate extends Component {
         <CardSection>
           <Input
           label="Phone"
-          placeholder="+359 898 548 929"
+          placeholder="+359 888 888 888"
           value={this.props.phone}
           onChangeText={(text) => this.props.employeeUpdate({ prop: 'phone', value: text })}
           />
