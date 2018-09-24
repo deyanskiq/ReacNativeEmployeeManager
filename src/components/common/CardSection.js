@@ -1,9 +1,13 @@
 import React from 'react';
-import {View} from 'react-native';
+import { View } from 'react-native';
 
 const CardSection = (props) => {
   return (
-    <View style={styles.containerStyle}>
+    // this is trick which allows the style to the right 'props.style'
+    // to override the style on the left 'styles.containerStyle'
+
+    // we use this when we want custom style of CardSection somewhere
+    <View style={[styles.containerStyle, props.style]}>
     {props.children}
     </View>
   );
@@ -21,4 +25,4 @@ const styles = {
   }
 };
 
-export {CardSection};
+export { CardSection };
